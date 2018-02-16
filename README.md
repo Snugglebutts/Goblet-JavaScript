@@ -32,7 +32,16 @@
         **************************************************************************************
                                               Story 
         **************************************************************************************
+        Open Scene - 
+            The Wizard, comes home to his tower after taking his morning stroll (immediately
+            following the start menu animation) and notices his tower has been broken into. 
+            Upon entering the tower he encounters a group of minions and has to fight his way
+            to the observatory.
         
+        [BEGIN REALM 1: LEVEL 1 - MIDGARD: WIZARD'S TOWER] -
+            After reaching the observatory, he discovers the party's most prized relic, and
+            source of their heightened power-- the Goblet (the Holy Grail)-- has been stolen! 
+            
 
         **************************************************************************************
                                              Controls 
@@ -96,7 +105,7 @@
             
         Character Types:
             
-        - Wizard
+        - Sindri the Wizard (Mage), M -OR- Alvis the Wizard (Mage)
             • Health: 100
             • Mana: 200
                 • Mana Regen: Medium speed
@@ -167,7 +176,7 @@
                             Active Time: 5 sec
                             Height: 1.5x player character height.
                     
-        - Knight
+        - Brokk the Dwarf, M -OR- Gunnar the Warrior, M (Knight)
             • Health: 200
             • Rage: 100
                 • Rage Regen: Slow out-of-combat, fast in-combat. 25% regen per kill
@@ -203,7 +212,7 @@
                             Damage: 20
                             Rage Cost: 50 Rage
                             Cooldown: 3 sec (Reset on kill)
-        - Rogue
+        - Orvar the Ranger, M (Rogue)
             • Health: 100
             • Energy: 200
                 • Energy Regen: Fast Speed
@@ -230,7 +239,7 @@
                             Energy Cost: 25 Energy
                             Cooldown: 1.0 sec
                 
-        - Joker/Jester
+        - Floki the Trickster, M -OR- Eisa the Trickster, F (Joker/Jester)
             • Health: 150
             • Energy: 150
                 • Energy Regen: Fast Speed
