@@ -59,13 +59,9 @@ function startGame() {
   gameBackgrounds.push(new component(1005 + 10, gameAreaHeight + 10, 'resources/backgrounds/Background-Trees+grass-large-single-row.png', -10, -60, "background"));
   // More trees in front of tower
   gameBackgrounds.push(new component(1005 + 15, gameAreaHeight + 15, 'resources/backgrounds/Background-Trees+grass-large-single-row.png', 20, -55, "background"));
-  // gameBackgrounds.push(new component(1005 + 20, gameAreaHeight + 20, 'resources/backgrounds/Background-trees+grass-large-single-row.png', -30, -50, "background"));
   // Wizard Tower
-  // gameBackgrounds.push(new component(200, 576 / 3 * 2, 'resources/backgrounds/svg/Wizard-Tower-Summer-2.svg', window.innerWidth - (576 / 3), 45, "image"));
   gameBackgrounds.push(new component(200, 576 / 3 * 2, 'resources/backgrounds/SVG/Wizard-Tower-Summer-2.svg', window.innerWidth, ((window.innerHeight / 3) * 2) - (576 / 3 * 2) - 45 , "image"));
-  // gameBackgrounds.push(new component(576 / 3 * 2, 576 / 3 * 2, 'resources/Wizzard_Tower.gif', window.innerWidth - (576 / 3), 45, "image"));
   gameBackgrounds.push(new component(1005 + 20, gameAreaHeight + 20, 'resources/backgrounds/Background-grass-large-single-row.png', 0, -50, "background"));
-  // gameBackgrounds.push(new component(1005 + 20, gameAreaHeight + 20, 'resources/backgrounds/Background-trees+grass-large-single-row.png', -50 , -50, "background"));
   gameBackgrounds.push(new component(1005 + 20, gameAreaHeight + 20, 'resources/backgrounds/Background-Trees+grass+dirt-large-single-row-gap.png', (gameBackgrounds[7].x - 400), -50, "trail"));
   gameBackgrounds.push(new component(1005 + 20, gameAreaHeight + 20, 'resources/backgrounds/Background-Trees+grass+dirt-large-single-row.png', gameBackgrounds[9].x - (gameBackgrounds[9].width) + 20, -50, "trail"));
   gameBackgrounds.push(new component(1005 + 20, gameAreaHeight + 20, 'resources/backgrounds/Background-Trees+grass+dirt-large-single-row.png', gameBackgrounds[10].x - (gameBackgrounds[10].width) + 20, -50, "trail"));
