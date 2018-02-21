@@ -6,8 +6,9 @@
   </head>
   
   <body onload="startGame()">
-    <!-- <script src="js/game-test.js" type="text/javascript"></script> -->
-    <script src="js/goblet-main.js" type="text/javascript"></script>
+<!-- <body> -->
+    <!-- <script src="js/goblet.js" type="text/javascript"></script> -->
+    <!-- <script src="js/goblet-main.js" type="text/javascript"></script> -->
     <br>
     
     <!-- <button onmousedown="startGameButton()">Start Game</button> -->
@@ -17,6 +18,7 @@
       <button onmousedown="moveleft();" onmouseup="clearmove();">LEFT</button>
       <button onmousedown="moveright();" onmouseup="clearmove();">RIGHT</button><br><br>
     </div> -->
+    <!-- <canvas id="canvas"></canvas> -->
     <div class="game-info" style="display: flex; text-align: center;">
       <label style="width: 100%;">Controls:</label>
     </div>
@@ -51,14 +53,16 @@
         <li><label id="label15"></label></li>
       </ul>
       <ul style="margin-top: 10px; width: 20%; list-style: none;">
-        <li><input type="checkbox" name="checkbox1">Checkbox1</li>
-        <li><input type="checkbox" name="checkbox2">Checkbox2</li>
-        <li><input type="checkbox" name="checkbox3">Checkbox3</li>
-        <li><input type="checkbox" name="checkbox4">Checkbox4</li>
-        <li><input type="checkbox" name="checkbox5">Checkbox5</li>
-        <li><input type="checkbox" name="checkbox6">Checkbox6</li>
-        <li><input type="checkbox" name="checkbox7">Checkbox7</li>
+        <li><input type="checkbox" id="checkbox1" checked><label for="checkbox1" id="checkbox1Label"></label></li>
+        <li><input type="checkbox" id="checkbox2" checked><label for="checkbox2" id="checkbox2Label"></label></li>
+        <li><input type="checkbox" id="checkbox3" checked><label for="checkbox3" id="checkbox3Label"></label></li>
+        <li><input type="checkbox" id="checkbox4" checked><label for="checkbox4" id="checkbox4Label"></label></li>
+        <li><input type="checkbox" id="checkbox5" checked><label for="checkbox5" id="checkbox5Label"></label></li>
+        <li><input type="checkbox" id="checkbox6" checked><label for="checkbox6" id="checkbox6Label"></label></li>
+        <li><input type="checkbox" id="checkbox7" checked><label for="checkbox7" id="checkbox7Label"></label></li>
       </ul>
     </div>
+    <!-- <script src="js/goblet.js" type="text/javascript"></script> -->
+    <script src="js/goblet-main.js" type="text/javascript"></script>
   </body>
 </html>
