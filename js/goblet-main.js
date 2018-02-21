@@ -4,25 +4,26 @@
 */
 
 // Variable Instantiation
-var player;
-var playerPet;
-var playerScore;
-var gameBackgrounds = [];
-var clouds = [];
-var timers = [];
-var startButton;
-var settingsButton;
-var exitButton;
-var gameLogo;
-var gameMenu;
-var gameInfo;
-var introAnimate = false;
-var introAnimateDone = false;
-var logoAnimateDone = false;
-var playerIntroAnimateDone = false;
-var logoAnimateFrame = 0;
-// Game height = 5/6 browser inner window height
-var gameAreaHeight = (window.innerHeight/6) * 5;
+var player,
+    playerPet,
+    playerPetEnabled,
+    playerScore,
+    gameBackgrounds = [],
+    clouds = [],
+    timers = [],
+    startButton,
+    settingsButton,
+    exitButton,
+    gameLogo,
+    gameMenu,
+    gameInfo,
+    introAnimate = false,
+    introAnimateDone = false,
+    logoAnimateDone = false,
+    playerIntroAnimateDone = false,
+    logoAnimateFrame = 0,
+    // Game height = 5/6 browser inner window height
+    gameAreaHeight = (window.innerHeight/6) * 5;
 
 timers.push({ delay: 100, nextFireTime: 0, doFunction: doTimers, counter: 0 });
 
@@ -73,7 +74,7 @@ function startGame() {
   // Add Player's character
   player = new characterComponent(32, 32, 'resources/characters/Wizard/SVG/Wizard-Right-2.svg', -160, 408, "player", true, 1, 3, 0, true);
   // Add Pet character
-  playerPet = new characterComponent(20, 25, 'resources/npc/Duck-Right-2.png', -168, 470, "image", true, 1, 3, 0, true);
+  playerPet = new characterComponent(20, 25, 'resources/npc/Duck-Right-2.png', -175, 470, "image", true, 1, 3, 0, true);
   // Set Player's gravity; also is pet's gravity
   player.gravity = 9.8;
 
@@ -459,7 +460,9 @@ function updateGameArea() {
     player.update();
     // If pet is enabled, update position and graphics
     playerPet.newPos();
-    playerPet.update();
+    if(playerPetEnabled) {
+      playerPet.update();
+    }
   } else if (introAnimate) {
     // Set player speeds to 0 each frame to move only speed amount each frame
     // invoked by buttonpress
@@ -505,7 +508,9 @@ function updateGameArea() {
     player.update();
     // If pet is enabled, update position and graphics
     playerPet.newPos();
-    playerPet.update();
+    if(playerPetEnabled) {
+      playerPet.update();
+    }
   }
   // If intro animation is done, begin logo animation
   if(introAnimate && !introAnimateDone) {//&& !introAnimateDone) {
@@ -534,6 +539,7 @@ function updateGameArea() {
 
   // Update each label to relevant information each frame
   updateLabels();
+  updateCheckboxes();
 }
 
 function animatePlayerIntro() {
@@ -555,24 +561,28 @@ function checkButtonPress() {
   // If pressing Left Arrow Key
   if (gameArea.keysdown && gameArea.keysdown[37] && !gameArea.keysdown[16]) {
     player.speedX -= player.speed;
-    playerPet.speedX -= player.speed;
+    if(player.x > playerPet.x + playerPet.width + 10 || player.x + player.width < playerPet.x - 10)
+      playerPet.speedX -= player.speed;
     player.lastDirection = 0;
     playerPet.lastDirection = 0;
     if(gameArea.frameNo % 10 == 0) {
       player.stepCount++;
-      playerPet.stepCount++;
+      if(player.x > playerPet.x + playerPet.width + 10 || player.x + player.width < playerPet.x - 10)
+        playerPet.stepCount++;
     }
   } else 
 
   // If pressing Shift + Left Arrow Key
   if (gameArea.keysdown && gameArea.keysdown[37] && gameArea.keysdown[16]) {
     player.speedX -= (player.speed * 1.5);
-    playerPet.speedX -= (player.speed * 1.5);
+    if(player.x > playerPet.x + playerPet.width + 10 || player.x + player.width < playerPet.x - 10)
+      playerPet.speedX -= (player.speed * 1.5);
     player.lastDirection = 0;
     playerPet.lastDirection = 0;
     if(gameArea.frameNo % 5 == 0) {
       player.stepCount++;
-      playerPet.stepCount++; 
+      if(player.x > playerPet.x + playerPet.width + 10 || player.x + player.width < playerPet.x - 10)
+        playerPet.stepCount++; 
     }
   }
 
@@ -586,27 +596,41 @@ function checkButtonPress() {
   // If pressing Right Arrow Key
   if (gameArea.keysdown && gameArea.keysdown[39] && !gameArea.keysdown[16]) {
     player.speedX += player.speed;
-    playerPet.speedX += player.speed;
+    if(player.x > playerPet.x + playerPet.width + 10 || player.x < playerPet.x - 10)
+      playerPet.speedX += player.speed;
     player.lastDirection = 1;
     playerPet.lastDirection = 1;
     // player.animate(player.lastDirection);
     if(gameArea.frameNo % 10 == 0){
       player.stepCount++;
-      playerPet.stepCount++;
+      if(player.x > playerPet.x + playerPet.width + 10 || player.x + player.width < playerPet.x - 10)
+        playerPet.stepCount++;
     }
   } else 
   // If pressing Shift + Right Arrow Key
   if (gameArea.keysdown && gameArea.keysdown[39] && gameArea.keysdown[16]) {
-    player.speedX += (player.speed * 1.5) ;
-    playerPet.speedX += (player.speed * 1.5);
+    player.speedX += (player.speed * 1.5);
+    if(player.x > playerPet.x + playerPet.width + 10 || player.x + player.width < playerPet.x - 10)
+      playerPet.speedX += (player.speed * 1.5);
     player.lastDirection = 1;
     playerPet.lastDirection = 1;
     if(gameArea.frameNo % 5 == 0) {
       player.stepCount++;
-      playerPet.stepCount++;
+      if(player.x > playerPet.x + playerPet.width + 10 || player.x + player.width < playerPet.x - 10)
+        playerPet.stepCount++;
     }
   }
   
+  if (gameArea.keysup[39]) {
+    if(player.x > playerPet.x + playerPet.width + 10)
+      playerPet.x++;
+  }
+  
+  if (gameArea.keysup[37]) {
+    if(player.x + player.width < playerPet.x - 10)
+      playerPet.x--;
+  }
+
   // If pressing Space Key (Fire)
   if ( gameArea.keysdown && gameArea.keysdown[32] ) {
     player.fireCount = 1;
@@ -635,7 +659,9 @@ function checkButtonPress() {
   }
 
   player.animateCharacter(player.lastDirection, 'characters/Wizard/PNG/Wizard');
-  playerPet.animateCharacter(playerPet.lastDirection, 'npc/Duck')
+  if(playerPetEnabled) {  
+    playerPet.animateCharacter(playerPet.lastDirection, 'npc/Duck')
+  }
 }
 
 function startGameButton() {
@@ -767,4 +793,32 @@ function updateLabels() {
   document.getElementById('label14').innerHTML = "Player Step Count: " + player.stepCount;
   document.getElementById('label15').innerHTML = "Projectile Count: " + player.projectiles.length;
 
+}
+
+function updateCheckboxes() {
+  // Column 1 Labels
+  document.getElementById('checkbox1Label').innerHTML = "Enable PlayerPet";
+  // document.getElementById('checkbox1').style.display = "none";
+  if(document.getElementById('checkbox1').checked)
+    playerPetEnabled = true;
+  else
+    playerPetEnabled = false;
+
+  document.getElementById('checkbox2Label').innerHTML = " ";
+  document.getElementById('checkbox2').style.display = "none";
+
+  document.getElementById('checkbox3Label').innerHTML = " ";
+  document.getElementById('checkbox3').style.display = "none";
+
+  document.getElementById('checkbox4Label').innerHTML = " ";
+  document.getElementById('checkbox4').style.display = "none";
+
+  document.getElementById('checkbox5Label').innerHTML = " ";
+  document.getElementById('checkbox5').style.display = "none";
+
+  document.getElementById('checkbox6Label').innerHTML = " ";
+  document.getElementById('checkbox6').style.display = "none";
+
+  document.getElementById('checkbox7Label').innerHTML = " ";
+  document.getElementById('checkbox7').style.display = "none";
 }
